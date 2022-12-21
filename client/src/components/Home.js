@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
 import Card from 'react-bootstrap/Card';
-const bankImageUrl = 'http://localhost:3000/bank.png'
+const bankImageUrl = process.env.REACT_APP_SERVER_URL+'bank.png'
 
 const Home = () => {
     const [img, setImg] = useState();
