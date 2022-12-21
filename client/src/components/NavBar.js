@@ -3,8 +3,6 @@ import { useContext } from 'react';
 import {signOut} from '../auth';
 const NavBar = () => {
   const {currentUser} = useContext(AuthContext);
-  console.log(currentUser)
-
     return(
         <>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -14,12 +12,16 @@ const NavBar = () => {
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
+              { !currentUser ? 
+             (
+              <>
               <li className="nav-item" data-toggle="tooltip" data-placement="bottom" title="New Here? Go here to create an account (You'll get $100 upon creation!)">
                 <a className="nav-link" href="#/createaccount/">Create Account</a>
               </li>
               <li className="nav-item" data-toggle="tooltip" data-placement="bottom" title="Come on and login using email/password or SSO!">
                 <a className="nav-link" href="#/login/">Login</a>
               </li>
+              </>) : null}
               {!!currentUser ? 
                (
                <>
@@ -28,6 +30,9 @@ const NavBar = () => {
              </li>
              <li className="nav-item" data-toggle="tooltip" data-placement="bottom" title="Come here to Withdraw all your moneys!">
                <a className="nav-link" href="#/withdraw/">Withdraw</a>
+             </li>
+             <li className="nav-item" data-toggle="tooltip" data-placement="bottom" title="Transfer some money to your friends!">
+               <a className="nav-link" href="#/transfer/">e-Transfer</a>
              </li>
              <li className="nav-item" data-toggle="tooltip" data-placement="bottom" title="Let's see what you have been upto!">
                <a className="nav-link" href="#/alldata/">AllData</a>

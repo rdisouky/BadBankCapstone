@@ -10,6 +10,7 @@ import Deposit from "./components//Deposit";
 import { AuthProvider } from "./auth.js";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import { Container } from "react-bootstrap";
+import Transfer from "./components/Transfer";
 
 const App = () => {
   return (
@@ -24,6 +25,7 @@ const App = () => {
             <Route path="/allData/" element={<ProtectedRoute><AllData /></ProtectedRoute>} />
             <Route path="/deposit/" element={<ProtectedRoute><Deposit /></ProtectedRoute>} />
             <Route path="/withdraw/" element={<ProtectedRoute><Withdraw /></ProtectedRoute>} />
+            <Route path="/transfer/" element={<ProtectedRoute><Transfer /></ProtectedRoute>} />
             <Route path="*" element={<h1>Page not Found</h1>} />
           </Routes>
         </Container>

@@ -1,34 +1,36 @@
+import {useState, useEffect} from 'react';
 import Card from 'react-bootstrap/Card';
+const bankImageUrl = 'http://localhost:3000/bank.png'
 
 const Home = () => {
+    const [img, setImg] = useState();
+
+    const fetchImage = async () => {
+      const res = await fetch(bankImageUrl);
+      const imageBlob = await res.blob();
+      const imageObjectURL = URL.createObjectURL(imageBlob);
+      setImg(imageObjectURL);
+    };
+
+    useEffect(() => {
+        fetchImage();
+      }, []);
     return(
-        <Card style={{height:'50rem', width:'50rem'}} bg={'info'} text={'dark'}>
+        <>
+        <Card style={{height:'50%', width:'50%'}} bg={'info'} text={'dark'}>
             <Card.Header>The Financial Crimes Home Page</Card.Header>
             <Card.Body>
                 <Card.Title>Welcome to the bank</Card.Title>
                 <Card.Text>
-                    Welcome to the Bank that allows you to steal but also does not protect your savings.
+                    Welcome to the Bank that does not allow you to steal but also protects your savings.
                     You can navigate through the website using the navigation bar. 
-                    Good Luck and do NOT get Caught!
+                    Good Luck!
                 </Card.Text>
-                <Card.Img variant="bottom" src="bank.png/100px180" />
+                <Card.Img variant="bottom" src={img} className="img-fluid"/>
             </Card.Body>
         </Card>
+        </>
     );
-    // return (
-    //     <Card
-    //       height="50rem"
-    //       width="50em"
-    //       bgcolor="info"
-    //       txtcolor="black"
-    //       //header="The Financial Crimes Home Page"
-    //       title="Welcome to the bank"
-    //       text="  Welcome to the Bank that allows you to steal but also does not protect your savings.
-    //       You can navigate through the website using the navigation bar. 
-    //       Good Luck and do NOT get Caught!."
-    //       body={(<img src="bank.png" className="img-fluid" alt="Responsive image"/>)}
-    //     />    
-    //   );  
 };
 
 export default Home
